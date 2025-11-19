@@ -6,54 +6,64 @@ StudentId: 700773915
 
 Course: CS5760 Natural Language Processing
 
+Question 1: Character-Level RNN (Q1.py)
+Components:
+CharRNN Model: Embedding → LSTM → Linear layer
+Architecture:
+Embedding dimension: 128
+Hidden size: 256
+Vocab size: Dynamic (from character set)
+
+Training:
+Toy corpus: "hello help heap held world..." repeated (synthetic data)
+Sequence length: 50 characters
+Train/val split: 80/20
+Optimizer: Adam (lr=0.001)
+Loss: CrossEntropyLoss
 
 
-Q1. Character-Level RNN Language Model (“hello” toy & beyond)
-Goal: Train a tiny character-level RNN to predict the next character given previous characters.
-Data (toy to start):
-•	Start with a small toy corpus you create (e.g., several “hello…”, “help…”, short words/sentences).
-•	Then expand to a short plain-text file of ~50–200 KB (any public-domain text of your choice).
-Model:
-•	Embedding → RNN (Vanilla RNN or GRU or LSTM) → Linear → Softmax over characters.
-•	Hidden size 64–256; sequence length 50–100; batch size 64; train 5–20 epochs.
-Train:
-•	Teacher forcing (use the true previous char as input during training).
-•	Cross-entropy loss; Adam optimizer.
-Report:
-1.	Training/validation loss curves.
-2.	Sample 3 temperature-controlled generations (e.g., τ = 0.7, 1.0, 1.2) for 200–400 chars each.
-3.	A 3–5 sentence reflection: what changes when you vary sequence length, hidden size, and temperature?
-(Connect to slides: embedding, sampling loop, teacher forcing, tradeoffs 
+Generation:
+Temperature sampling (τ=0.7, 1.0, 1.2)
+Stateful hidden state management
+250-character generation samples
 
 
-Q2. Mini Transformer Encoder for Sentences
-Task: Build a mini Transformer Encoder (NOT full decoder) to process a batch of sentences.
-Steps:
-1.	Use a small dataset (e.g., 10 short sentences of your choice).
-2.	Tokenize and embed the text.
-3.	Add sinusoidal positional encoding.
-4.	Implement:
-o	Self-attention layer
-o	Multi-head attention (2 or 4 heads)
-o	Feed-forward layer
-o	Add & Norm
-5.	Show:
-o	Input tokens
-o	Final contextual embeddings
-o	Attention heatmap between words (visual or printed)
+Key Concepts: Sequence length trade-offs, hidden size capacity, temperature control for diversity
 
-Q3. Implement Scaled Dot-Product Attention
-Goal: Implement the attention function from your slides:
-"Attention"(Q,K,V)="softmax"((QK^T)/√(d_k ))V
+Question 2: Transformer Encoder (Q2.py)
+Components:
+MultiHeadAttention: 4 parallel attention heads with linear projections
+PositionalEncoding: Sinusoidal positional embeddings (max_len=100)
+TransformerEncoder: Complete encoder block with:
 
-Requirements:
-	Write a function in PyTorch or TensorFlow to compute attention.
-	Test it using random Q, K, V inputs.
-	Print:
-	Attention weight matrix
-	Output vectors
-	Softmax stability check (before and after scaling)
+Self-attention layer
+Feed-forward network (256→512→256)
+Layer normalization
+Residual connections
 
+
+Testing:
+Toy sentences: "hello world today", "the cat sat down", etc.
+Vocabulary: Simple word tokenization
+Output: Contextual embeddings (batch × seq_len × d_model)
+Visualization: Attention weight heatmap
+
+
+Key Concepts: Multi-head parallelization, positional awareness, attention distribution
+
+
+Question 3: Scaled Dot-Product Attention (Q3.py)
+Core Mechanism:
+Formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V
+Scaling: Divides by √d_k to prevent softmax saturation
+Optional Masking: Supports attention masking for causal/padding scenarios
+Testing:
+Input dimensions: (batch=2, seq_len=4, d_k=64)
+Stability checks: Compares scaled vs unscaled scores
+Output verification: Row sums ≈ 1.0 (softmax property)
+
+
+Key Concepts: Numerical stability, dot-product similarity, probabilistic weighting
 
 	HOW TO RUN 
 	1. Install Dependencies:
