@@ -53,3 +53,13 @@ Requirements:
 	Attention weight matrix
 	Output vectors
 	Softmax stability check (before and after scaling)
+
+
+	HOW TO RUN 
+	1. Install Dependencies:
+	pip install torch matplotlib numpy
+
+	2. Run Individual Questions
+	Python Q1.py #Character-Level RNN Language Model
+	Python Q2.py #Mini Transformer Encoder for Sentences
+	Python Q3.py #Implement Scaled Dot-Product Attention
