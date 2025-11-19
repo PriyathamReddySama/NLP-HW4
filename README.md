@@ -7,8 +7,8 @@ StudentId: 700773915
 Course: CS5760 Natural Language Processing
 
 Question 1: Character-Level RNN (Q1.py)
-Components:
-CharRNN Model: Embedding → LSTM → Linear layer
+
+Components:CharRNN Model: Embedding → LSTM → Linear layer
 Architecture:
 Embedding dimension: 128
 Hidden size: 256
@@ -31,8 +31,8 @@ Stateful hidden state management
 Key Concepts: Sequence length trade-offs, hidden size capacity, temperature control for diversity
 
 Question 2: Transformer Encoder (Q2.py)
-Components:
-MultiHeadAttention: 4 parallel attention heads with linear projections
+
+Components: MultiHeadAttention: 4 parallel attention heads with linear projections
 PositionalEncoding: Sinusoidal positional embeddings (max_len=100)
 TransformerEncoder: Complete encoder block with:
 
