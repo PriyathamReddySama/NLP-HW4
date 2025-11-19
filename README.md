@@ -1,4 +1,4 @@
-CS5760 Natural Language Processing - HomeWork - 4
+CS5760 Natural Language Processing HomeWork-4
 
 Name: PRIYATHAM REDDY SAMA
 
