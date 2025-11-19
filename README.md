@@ -41,9 +41,7 @@ Feed-forward network (256→512→256)
 Layer normalization
 Residual connections
 
-
-Testing:
-Toy sentences: "hello world today", "the cat sat down", etc.
+Testing:Toy sentences: "hello world today", "the cat sat down", etc.
 Vocabulary: Simple word tokenization
 Output: Contextual embeddings (batch × seq_len × d_model)
 Visualization: Attention weight heatmap
@@ -53,15 +51,14 @@ Key Concepts: Multi-head parallelization, positional awareness, attention distri
 
 
 Question 3: Scaled Dot-Product Attention (Q3.py)
-Core Mechanism:
-Formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V
+
+Core Mechanism: Formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V
 Scaling: Divides by √d_k to prevent softmax saturation
 Optional Masking: Supports attention masking for causal/padding scenarios
-Testing:
-Input dimensions: (batch=2, seq_len=4, d_k=64)
+
+Testing:Input dimensions: (batch=2, seq_len=4, d_k=64)
 Stability checks: Compares scaled vs unscaled scores
 Output verification: Row sums ≈ 1.0 (softmax property)
-
 
 Key Concepts: Numerical stability, dot-product similarity, probabilistic weighting
 
